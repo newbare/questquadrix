@@ -56,7 +56,6 @@ public class Instituicao implements Serializable {
 
 
 	@JsonIgnore
-	//bi-directional many-to-one association to Prova
 	@OneToMany(mappedBy="instituicao")
 	public List<Prova> getProvas() {
 		return this.provas;

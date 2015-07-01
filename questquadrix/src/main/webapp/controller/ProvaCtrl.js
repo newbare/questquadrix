@@ -7,26 +7,59 @@ directoryApp.controller('ProvaCtrl', function($scope, $http, $window) {
     var ip = QueryString()['ip'] ? QueryString()['ip'] : "localhost";
     var urlAll = "http://" + ip + ":8080/questquadrix/dirapi/prova/all";
     var urlContact = "http://" + ip + ":8080/questquadrix/dirapi/prova/id/";
-
+    var urlAllBancas = "http://" + ip + ":8080/questquadrix/dirapi/banca/all";
+    var urlAllInstituicoes = "http://" + ip + ":8080/questquadrix/dirapi/instituicao/all";
+    var urlAllGraus = "http://" + ip + ":8080/questquadrix/dirapi/grau/all";
     // For Cross Domain request
     $http.defaults.useXDomain = true;
 
-    $scope.formData = {};
+    $scope.prova = {};
+   
+    
 
-
-    $scope.loadDirectory = function() {
+    $scope.loadprovas = function() {
 
         $scope.filtreName = "";  // search reset 
 
         $http.get(urlAll)
         .success(function(data) {
-            $scope.directory = data;
+            $scope.provas = data;
 
         })
         .error(function(data, status) {
             console.log(data, status);
-        });
+        });                 
     };
+    
+    
+    $scope.loadBancas = function() {
+
+        $http.get(urlAllBancas)
+        .success(function(data) {
+            $scope.bancas = data;
+            $scope.selected = $scope.bancas[0];
+
+        })
+        .error(function(data, status) {
+            console.log(data, status);
+        });                 
+    };
+    
+    $scope.loadInstituicoes = function() {
+
+        $http.get(urlAllInstituicoes)
+        .success(function(data) {
+            $scope.instituicoes = data;
+            $scope.selectedInst = $scope.instituicoes[0];
+
+        })
+        .error(function(data, status) {
+            console.log(data, status);
+        });                 
+    };
+    
+    
+    
 
     /**
      * private int idProva;
@@ -40,8 +73,9 @@ directoryApp.controller('ProvaCtrl', function($scope, $http, $window) {
      * @param json contact
      */
     $scope.setFormContact = function(index, prova) {
-        $scope.formData.prova.id = index;
-        $scope.formData.prova = prova;
+        $scope.prova.id = index;
+        $scope.prova = prova;
+        
     };
 
     /**
@@ -49,32 +83,32 @@ directoryApp.controller('ProvaCtrl', function($scope, $http, $window) {
      * 
      * @param json contact
      */
-    $scope.editContact = function(contact) {
+    $scope.editContact = function(prova) {
         
-        var urlForServer = urlContact + ($scope.formData.id >= 0  ? $scope.formData.id : "");
-        var httpMethode = $scope.formData.id >= 0 ? 'POST' : 'PUT';
+        var urlForServer = urlContact + ($scope.prova.id >= 0  ? $scope.prova.id : "");
+        var httpMethode = $scope.prova.id >= 0 ? 'POST' : 'PUT';
         
         $http({
             method: httpMethode,
             url: urlForServer,
-            data: $scope.formData,
+            data: $scope.prova,
             headers: {'Content-Type': 'application/json'}
         })
         .success(function(data) {
             if(data == 1) {
                 if(httpMethode == 'PUT') {
-                    $scope.formData.id = $scope.directory.length;
+                    $scope.prova.id = $scope.provas.length;
                 }
 
                 // angular.copy allows you to copy data to avoid to keep a link with the scope
-                $scope.directory[$scope.formData.id] = angular.copy($scope.formData);
+                $scope.provas[$scope.prova.id] = angular.copy($scope.prova);
             }
         });
     };
     
-    $scope.removeContact = function(contact){
+    $scope.removeContact = function(prova){
         
-        var indexContactToKill = getIndexByContact(contact);
+        var indexContactToKill = getIndexByContact(prova);
           
         var urlForPost = urlContact + indexContactToKill;
        
@@ -86,7 +120,7 @@ directoryApp.controller('ProvaCtrl', function($scope, $http, $window) {
         .success(function(data) {
             if(data == 1) {
                 // remove a contact in the directory array
-                $scope.directory.splice(indexContactToKill, 1);
+                $scope.provas.splice(indexContactToKill, 1);
             }
         });
     };
@@ -97,14 +131,16 @@ directoryApp.controller('ProvaCtrl', function($scope, $http, $window) {
      * @param {json} contact
      * @returns int
      */
-    var getIndexByContact = function(contact) {
-        for(index in $scope.directory) {
-            if($scope.directory[index] == contact) {
+    var getIndexByContact = function(prova) {
+        for(index in $scope.provas) {
+            if($scope.provas[index] == prova) {
                 return index;
             }
         }
     };
     
     // Init directory
-    $scope.loadDirectory();
+    $scope.loadprovas();
+    $scope.loadBancas();
+    $scope.loadInstituicoes();
 });

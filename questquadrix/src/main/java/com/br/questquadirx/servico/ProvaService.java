@@ -44,8 +44,9 @@ public class ProvaService implements Serializable {
 
 	
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void create(Prova Prova) {
-		repository.inserir(Prova);
+	public void create(Prova prova) {
+		prepararInsert(prova);
+		repository.inserir(prova);
 	}
 
 	
@@ -70,6 +71,12 @@ public class ProvaService implements Serializable {
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(int id) {
 		repository.excluirPor(id);
+	}
+	
+	private void prepararInsert(Prova prova) {		
+		if(prova.getInstituicao()==null || prova.getInstituicao().getIdInstituicao()==0){prova.getInstituicao().setIdInstituicao(1);}
+		if(prova.getGrau()==null || prova.getGrau().getIdGrau()==0){prova.getGrau().setIdGrau(1);}
+		if(prova.getBanca()==null || prova.getBanca().getIdBanca()==0){prova.getBanca().setIdBanca(1);}
 	}
 
 }

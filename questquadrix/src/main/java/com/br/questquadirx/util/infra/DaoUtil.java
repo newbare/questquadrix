@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.FinderException;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -117,6 +116,12 @@ public class DaoUtil<T> implements Dao<T> {
 		Query q = entityManager.createQuery(jpql);  
 		return (Long) q.getSingleResult(); 
 	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+	
+	
 	
 
 }

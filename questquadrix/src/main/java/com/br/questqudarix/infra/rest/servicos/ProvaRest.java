@@ -55,13 +55,15 @@ public class ProvaRest extends SpringBeanAutowiringSupport implements Serializab
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_JSON})
 	public int addProva (Prova prova) {
-		try {
+		try {			
 			provaService.create(prova);
 		} catch (Exception e) {
 			return 0;
 		}
 		return 1;
 	}
+
+	
 
 	@Path("/id/{id}")
 	@DELETE

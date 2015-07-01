@@ -49,7 +49,7 @@ public class Prova implements Serializable {
 	//bi-directional many-to-one association to Banca
 	
 	@ManyToOne
-	@JoinColumn(name="ID_BANCA",referencedColumnName = "ID_BANCA",insertable = false, updatable = false)
+	@JoinColumn(name="ID_BANCA",referencedColumnName = "ID_BANCA",insertable = true, updatable = true)
 	public Banca getBanca() {
 		return this.banca;
 	}
@@ -60,7 +60,7 @@ public class Prova implements Serializable {
 
 	
 	@ManyToOne
-	@JoinColumn(name="ID_GRAU",referencedColumnName = "ID_GRAU",insertable = false, updatable = false)
+	@JoinColumn(name="ID_GRAU",referencedColumnName = "ID_GRAU",insertable = true, updatable = true)
 	public Grau getGrau() {
 		return this.grau;
 	}
@@ -71,7 +71,7 @@ public class Prova implements Serializable {
 
 	
 	@ManyToOne
-	@JoinColumn(name="ID_INSTITUICAO",referencedColumnName = "ID_INSTITUICAO",insertable = false, updatable = false)
+	@JoinColumn(name="ID_INSTITUICAO",referencedColumnName = "ID_INSTITUICAO",insertable = true, updatable = true)
 	public Instituicao getInstituicao() {
 		return this.instituicao;
 	}
