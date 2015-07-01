@@ -1,13 +1,18 @@
 Spring + JSF + JPA + Jersey + AngularJS
 =============================
 
-Banco de dados Derby - Habilitar na JDK poprta 21
-Tomcat 7 ou mais
+Banco de dados Derby - Habilitar na JDK poprta 21 -> não embarca no eclipse, baicha 
 se for usar servidor de aplicação com suporte a CDI desabilite o Weld no POM
 habilite o FACETS no eclipse DWP 3.0
 
 http://localhost:8080/questquadrix/
 
+
+o exemplo abaixo também roda com JSF 2 e Prime 5 
+
+http://localhost:8080/questquadrix/index.xhtml
+
+querendo colaborar me procurem, vem muito mais por ai.
 
 - Version 1.4.0.GA
   - Added H2 JAR dependency for built-in support to H2 database;
