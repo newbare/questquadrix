@@ -4,8 +4,9 @@ Spring + JSF + JPA + Jersey + AngularJS
 Banco de dados Derby - Habilitar na JDK poprta 21
 Tomcat 7 ou mais
 se for usar servidor de aplicação com suporte a CDI desabilite o Weld no POM
+habilite o FACETS no eclipse DWP 3.0
 
-
+http://localhost:8080/questquadrix/
 
 
 - Version 1.4.0.GA

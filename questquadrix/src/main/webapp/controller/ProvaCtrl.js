@@ -1,7 +1,7 @@
 var directoryApp = angular.module('provaApp', []);
 
 directoryApp.controller('ProvaCtrl', function($scope, $http, $window) {
-    alert("Xuxa Aqui!!!")
+    
     // You can set the server ip in the url like this
     // http://localhost/path/index.html?ip=192.168.0.1
     var ip = QueryString()['ip'] ? QueryString()['ip'] : "localhost";
@@ -41,12 +41,7 @@ directoryApp.controller('ProvaCtrl', function($scope, $http, $window) {
      */
     $scope.setFormContact = function(index, prova) {
         $scope.formData.prova.id = index;
-        $scope.formData.prova.nome = prova.nome;
-        $scope.formData.prova.banca.nomeBanca = prova.banca.nomeBanca;
-        $scope.formData.prova.grau.txtNivel = prova.grau.txtNivel;
-        $scope.formData.prova.instituicao.nomeInstituicao = prova.instituicao.nomeInstituicao;    
-        
-        alert(prova.instituicao.nomeInstituicao);
+        $scope.formData.prova = prova;
     };
 
     /**
