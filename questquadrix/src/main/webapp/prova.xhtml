@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+>
+
+<h:head>
+	<meta
+		http-equiv="Content-Type"
+		content="text/html; charset=UTF-8"
+	/>
+	<title>TUTORIAL DO JEFERA + Spring + JSF + PRIMEFACES + HIBERNATE </title>
+
+	<h:outputStylesheet
+		library="css"
+		name="index.css"
+	/>
+</h:head>
+
+<h:body>
+	<p:growl
+		id="growl"
+		autoUpdate="true"
+		globalOnly="false"
+		showDetail="false"
+	/>
+
+	<h:panelGroup
+		id="wrapper"
+		layout="block"
+		styleClass="wrapper"
+	>
+		<h:form id="form">
+			<h:panelGroup
+				id="viewPanelGroup"
+				layout="block"
+				rendered="#{provaAction.state eq 'READ'}"
+				styleClass="ui-grid ui-grid-responsive"
+			>
+				<div class="ui-grid-row">
+					<div class="ui-grid-col-12">
+						<p:panel
+							id="viewPanel"
+							header="#{i18n['countries']}"
+						>
+							<h:panelGroup
+								layout="block"
+								style="margin: 0 0 0.5em 0;"
+							>
+								<p:commandButton
+									id="buttonNew"
+									value="#{i18n['button.new']}"
+									action="#{provaAction.clearItem}"
+									icon="ui-icon-plus"
+									update="@form"
+									resetValues="true"
+								>
+									<f:setPropertyActionListener
+										target="#{provaAction.state}"
+										value="CREATE"
+									/>
+								</p:commandButton>
+							</h:panelGroup>
+
+							<p:dataTable
+								id="mainDataTable"
+								value="#{provaAction.items}"
+								var="item"
+							>
+								<p:column
+									headerText="#"
+									width="30"
+									style="text-align: center;"
+								>
+									<h:outputText value="#{item.idProva}" />
+								</p:column>
+								<p:column headerText="id Prova">
+									<h:outputText value="#{item.nome}" />
+								</p:column>
+								<p:column
+									headerText="id Banca"
+									width="30"
+								>
+									<h:outputText value="#{item.banca.nomeBanca}" />
+								</p:column>
+								<p:column
+									headerText="id Instituição"
+									style="text-align: right;"
+								>
+									<h:outputText value="#{item.instituicao.nomeInstituicao}"/>
+										
+								
+								</p:column>
+								<p:column
+									headerText="id Nivel"
+									style="text-align: right;"
+								>
+									<h:outputText value="#{item.grau.txtNivel}"/>
+										
+								
+								</p:column>
+								<p:column
+									headerText="#{i18n['operations']}"
+									width="70"
+									style="text-align: center;"
+								>
+									<p:commandButton
+										id="buttonOperationEdit"
+										icon="ui-icon-pencil"
+										process="@this"
+										update="@form"
+										resetValues="true"
+										immediate="true"
+									>
+										<f:setPropertyActionListener
+											target="#{provaAction.item}"
+											value="#{item}"
+										/>
+										<f:setPropertyActionListener
+											target="#{provaAction.state}"
+											value="UPDATE"
+										/>
+									</p:commandButton>
+									<p:commandButton
+										id="buttonOperationRemove"
+										icon="ui-icon-trash"
+										process="@this"
+										update="@form"
+										immediate="true"
+									>
+										<f:setPropertyActionListener
+											target="#{provaAction.item}"
+											value="#{item}"
+										/>
+										<f:setPropertyActionListener
+											target="#{provaAction.state}"
+											value="DELETE"
+										/>
+									</p:commandButton>
+								</p:column>
+							</p:dataTable>
+						</p:panel>
+					</div>
+				</div>
+			</h:panelGroup>
+			
+		</h:form>
+	</h:panelGroup>
+</h:body>
+
+</html>

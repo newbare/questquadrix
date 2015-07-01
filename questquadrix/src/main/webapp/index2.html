@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="directoryApp" lang="en">
+    <head>
+        <title>Exemplo de um Cliente Rest AngularJS</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link type="text/css" rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+        <script type="text/javascript" src="resources/jsSample/scripts_index2.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+        
+        <script type="text/javascript" src="controller/DirectoryCtrl.js"></script>
+    </head>
+    <body ng-controller="DirectoryCtrl">
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <h2>Contatos</h2>
+                <ul class="list-unstyled">
+                    <li ng-repeat="contact in directory | filter:filtreName">
+                        <button ng-click="removeContact(contact)" type="button" class="btn btn-danger" title="Remove Contact">X</button>
+                        &nbsp;&nbsp;&nbsp;
+                        <a ng-click="setFormContact($index, contact)">{{contact.lastName}} {{contact.firstName}} ({{contact.age}})</a>
+                    </li>
+                </ul>
+                
+                </div>
+                <div class="col-md-4">
+                    <form class="form-horizontal" role="form">
+                        <fieldset>
+                            <legend>Filtros</legend>
+                            <div class="input-group"><button ng-click="loadDirectory()" type="button" class="btn btn-primary">Buscar Diretório</button></div>
+                            <br />
+                            <div class="input-group">
+                                <input ng-model="filtreName" type="text" class="form-control" placeholder="Nome, sobrenome ou idade" />
+                                <span class="input-group-btn"><button ng-click="filtreName='';" type="button" class="btn btn-danger">Limpar</button></span>
+                            </div>
+                        </fieldset>
+                    </form><br />
+                    <form class="form-horizontal" role="form">
+                        <fieldset>
+                            <legend>Editar contato</legend>
+                            <div class="form-group">
+                                <input ng-model="formData.lastName" type="text" class="form-control" placeholder="Nome" />
+                            </div>
+                            <div class="form-group">
+                                <input ng-model="formData.firstName" type="text" class="form-control" placeholder="Sobrenome" />
+                            </div>
+                            <div class="form-group">
+                                <input ng-model="formData.age" type="number" class="form-control" placeholder="Idade" />
+                            </div>
+                            <div class="form-group"><button ng-click="editContact()" type="button" class="btn btn-primary">Ok</button> &nbsp;&nbsp;
+                            <button ng-click="formData={};" type="button" class="btn btn-danger">Limpar</button></div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
