@@ -6,8 +6,10 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.br.questquadirx.dominio.Prova;
 import com.br.questquadirx.repositorio.ProvaRepositorio;
@@ -17,7 +19,7 @@ import com.br.questquadirx.repositorio.ProvaRepositorio;
  * @author Jefera
  */
 @Named
-public class ProvaService implements Serializable {
+public class ProvaService extends SpringBeanAutowiringSupport implements Serializable {
 
 	
 	/**
@@ -25,10 +27,12 @@ public class ProvaService implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private ProvaRepositorio repository;
-	
+	/*@Inject
+	PasswordEncoder passwordEncoder;*/
 	
 	@Inject
 	public void setRepository(ProvaRepositorio repository) {
+		//System.out.println("ADMIN XUXA:"+passwordEncoder.encode("admin"));
 		this.repository = repository;
 	}
 

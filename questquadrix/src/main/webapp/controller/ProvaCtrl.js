@@ -5,11 +5,11 @@ directoryApp.controller('ProvaCtrl', function($scope, $http, $window) {
     // You can set the server ip in the url like this
     // http://localhost/path/index.html?ip=192.168.0.1
     var ip = QueryString()['ip'] ? QueryString()['ip'] : "localhost";
-    var urlAll = "http://" + ip + ":8080/questquadrix/dirapi/prova/all";
-    var urlContact = "http://" + ip + ":8080/questquadrix/dirapi/prova/id/";
-    var urlAllBancas = "http://" + ip + ":8080/questquadrix/dirapi/banca/all";
-    var urlAllInstituicoes = "http://" + ip + ":8080/questquadrix/dirapi/instituicao/all";
-    var urlAllGraus = "http://" + ip + ":8080/questquadrix/dirapi/grau/all";
+    var urlAll = "http://" + ip + ":8080/questquadrix/rest/prova/all";
+    var urlContact = "http://" + ip + ":8080/questquadrix/rest/prova/id/";
+    var urlAllBancas = "http://" + ip + ":8080/questquadrix/rest/banca/all";
+    var urlAllInstituicoes = "http://" + ip + ":8080/questquadrix/rest/instituicao/all";
+    var urlAllGraus = "http://" + ip + ":8080/questquadrix/rest/grau/all";
     // For Cross Domain request
     $http.defaults.useXDomain = true;
 

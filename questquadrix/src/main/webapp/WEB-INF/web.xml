@@ -19,6 +19,15 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+<!-- Spring Security -->
+<filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 	<!-- JSF FACES SERVLET PARA OPÇÃO JSF -->
 	<servlet>
@@ -63,7 +72,8 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			/WEB-INF/application-context.xml
-			/WEB-INF/database/database-context.xml
+			/WEB-INF/spring-security.xml
+			<!-- /WEB-INF/database/database-context.xml -->
 		</param-value>
 	</context-param>
 	<!-- SPRING BEAN PROFILES -->

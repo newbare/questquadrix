@@ -27,26 +27,23 @@ public class ProvaRest extends SpringBeanAutowiringSupport implements Serializab
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 339661291934991952L;
+	private static final long serialVersionUID = 339661291934991952L;	
 	
 	
 	@Inject
 	ProvaService provaService;	
-	/*public void setProvaService(ProvaService provaService) {
-		this.provaService = provaService;
-	}
-*/
+	
 	@Path("/all")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Prova> getPorvas() {
+	public List<Prova> getPorvas() {		
 		return provaService.list();
 	}
 	
 	@Path("/id/{id}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)	
-	public Prova getProvaByID (@PathParam("id") int index) {
+	public Prova getProvaByID (@PathParam("id") int index) {		
 		return provaService.read(index);
 	}
 	
