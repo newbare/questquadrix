@@ -61,3 +61,16 @@ querendo colaborar me procurem, vem muito mais por ai.
     - Derby;
     - and many more...
   - Hibernate 4.x as JPA 2.1 provider (switchable to EclipseLink if convenient - see web.xml);
+--------------------------------------------------------------------------------------------------
+Ativação do Apache Derby com JDK superior a 7
+C:\Program Files\Java\jdk1.7.0_51\jre
+which is quite important for me, I was modifying another java.policy and took no effect and wasted me a couple of hours.
+
+For reason of java.policy is an unix style file and read-only, I opened and edited it with notepad++ and executed as administrator (under the same java home):
+
+C:\Program Files\Java\jdk1.7.0_51\jre\lib\security\java.policy
+Add only these lines into the file after the first grant:
+
+grant {
+    permission java.net.SocketPermission "localhost:1527", "listen";
+};
