@@ -2,8 +2,6 @@ package com.br.questqudarix.infra.rest.springsecurity;
 
 import java.util.Map;
 
-import javax.inject.Named;
-
 
 public class UserTransfer
 {
