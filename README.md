@@ -2,7 +2,29 @@
 Spring + JSF + JPA + Jersey + AngularJS
 =============================
 
-Banco de dados Derby - Habilitar na JDK poprta 21 -> não embarca no eclipse, baicha 
+Banco de dados Derby - Habilitar na JDK poprta 21 ->
+Find out exactly where the java home is by executing this instruction from NetBeans 7.4 :
+
+System.out.println(System.getProperty("java.home"));
+This is the output for my case:
+
+C:\Program Files\Java\jdk1.7.0_51\jre
+which is quite important for me, I was modifying another java.policy and took no effect and wasted me a couple of hours.
+
+For reason of java.policy is an unix style file and read-only, I opened and edited it with notepad++ and executed as administrator (under the same java home):
+
+C:\Program Files\Java\jdk1.7.0_51\jre\lib\security\java.policy
+Add only these lines into the file after the first grant:
+
+grant {
+    permission java.net.SocketPermission "localhost:1527", "listen";
+};
+Save the file, which is a little tricky for reason of the permission. But if you run notepad++ or any other edit program as administrator, you can solve the problem. 
+
+Then try to connect the database from NetBeans, it works for me.
+Good luck.
+
+não embarca no eclipse, baicha 
 se for usar servidor de aplicação com suporte a CDI desabilite o Weld no POM
 habilite o FACETS no eclipse DWP 3.0
 
