@@ -2,7 +2,7 @@
 Spring + JSF + JPA + Jersey + AngularJS
 =============================
 
-Banco de dados Derby - Habilitar na JDK poprta 21 ->
+Banco de dados Derby - Habilitar na JDK 7 ou 8 porta 1527 ->
 Find out exactly where the java home is by executing this instruction from NetBeans 7.4 :
 
 System.out.println(System.getProperty("java.home"));
